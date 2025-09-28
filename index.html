@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muñeco de Nieve - A-Frame</title>
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <style>
-    body { margin: 0; font-family: sans-serif; }
-  </style>
-</head>
-<body>
-  <a-scene background="color: #87CEEB" embedded>
-    <!-- Luces -->
-    <a-entity light="type: ambient; intensity: 0.6"></a-entity>
-    <a-entity light="type: directional; intensity: 0.8" position="-1 2 1"></a-entity>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escena A-Frame</title>
 
-    <!-- Suelo -->
-    <a-plane rotation="-90 0 0" width="30" height="30" color="#eef7ff"></a-plane>
+    <!-- ✅ A-Frame desde CDN (no tienes que descargar nada) -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
 
-    <!-- Muñeco de Nieve -->
-    <a-entity position="0 0 -3" animation="property: rotation; to: 0 360 0; dur: 18000; loop: true; easing: linear">
-      <a-sphere radius="0.8" color="#fff" position="0 0.8 0"></a-sphere>
-      <a-sphere radius="0.55" color="#fff" position="0 1.55 0"></a-sphere>
-      <a-sphere radius="0.38" color="#fff" position="0 2.12 0"></a-sphere>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ✅ Escena básica de A-Frame -->
+    <a-scene>
+      <!-- Fondo -->
+      <a-sky color="#ECECEC"></a-sky>
 
-      <!-- Ojos -->
-      <a-sphere radius="0.05" color="#000" position="-0.12 2.2 0.33"></a-sphere>
-      <a-sphere radius="0.05" color="#000" position="0.12 2.2 0.33"></a-sphere>
+      <!-- Un cubo de prueba -->
+      <a-box position="0 1.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
 
-      <!-- Nariz -->
-      <a-cone height="0.28" radius-bottom="0.06" radius-top="0.01" color="#ff7f00" position="0 2.09 0.45" rotation="90 0 0"></a-cone>
-    </a-entity>
+      <!-- Un suelo plano -->
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
 
-    <!-- Cámara -->
-    <a-entity camera position="0 1.6 4" look-controls></a-entity>
-  </a-scene>
-</body>
+      <!-- Luz ambiental y de dirección -->
+      <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
+      <a-light type="directional" position="-2 4 3" intensity="1"></a-light>
+
+      <!-- Cámara con control de mirada -->
+      <a-entity position="0 1.6 0">
+        <a-camera look-controls></a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
 </html>
