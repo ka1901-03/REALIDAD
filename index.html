@@ -1,38 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Escena A-Frame</title>
-
-    <!-- ✅ A-Frame desde CDN (no tienes que descargar nada) -->
-    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Muñeco de Nieve Adorable</title>
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <style>
-      body {
-        margin: 0;
-      }
+      body { margin: 0; }
     </style>
   </head>
   <body>
-    <!-- ✅ Escena básica de A-Frame -->
-    <a-scene>
-      <!-- Fondo -->
-      <a-sky color="#ECECEC"></a-sky>
+    <a-scene background="color: #BEE3F8">
+      <!-- 🎇 LUCES -->
+      <a-light type="ambient" color="#ffffff" intensity="0.6"></a-light>
+      <a-light type="directional" color="#fff" intensity="0.9" position="2 4 3"></a-light>
 
-      <!-- Un cubo de prueba -->
-      <a-box position="0 1.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+      <!-- 🌨️ SUELO NEVADO -->
+      <a-plane position="0 0 -5" rotation="-90 0 0" width="50" height="50" color="#F0F8FF"></a-plane>
 
-      <!-- Un suelo plano -->
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+      <!-- ❄️ CIELO -->
+      <a-sky color="#B3E5FC"></a-sky>
 
-      <!-- Luz ambiental y de dirección -->
-      <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
-      <a-light type="directional" position="-2 4 3" intensity="1"></a-light>
+      <!-- ⛄ MUÑECO ADORABLE -->
+      <a-entity id="snowman" position="0 0 -4">
+        <!-- Base -->
+        <a-sphere position="0 0.6 0" radius="0.6" color="white"></a-sphere>
+        <!-- Panza -->
+        <a-sphere position="0 1.3 0" radius="0.45" color="white"></a-sphere>
+        <!-- Cabeza -->
+        <a-sphere position="0 1.9 0" radius="0.33" color="white"></a-sphere>
 
-      <!-- Cámara con control de mirada -->
-      <a-entity position="0 1.6 0">
-        <a-camera look-controls></a-camera>
+        <!-- OJOS -->
+        <a-sphere position="-0.1 2.0 0.3" radius="0.04" color="black"></a-sphere>
+        <a-sphere position="0.1 2.0 0.3" radius="0.04" color="black"></a-sphere>
+
+        <!-- NARIZ ZANAHORIA -->
+        <a-cone position="0 1.9 0.42" rotation="90 0 0"
+                 height="0.18" radius-bottom="0.05" radius-top="0.01" color="#FF7F50"></a-cone>
+
+        <!-- SONRISA -->
+        <a-sphere position="-0.12 1.8 0.32" radius="0.02" color="#444"></a-sphere>
+        <a-sphere position="-0.06 1.77 0.34" radius="0.02" color="#444"></a-sphere>
+        <a-sphere position="0.06 1.77 0.34" radius="0.02" color="#444"></a-sphere>
+        <a-sphere position="0.12 1.8 0.32" radius="0.02" color="#444"></a-sphere>
+
+        <!-- BOTONES -->
+        <a-sphere position="0 1.4 0.38" radius="0.03" color="#111"></a-sphere>
+        <a-sphere position="0 1.15 0.42" radius="0.03" color="#111"></a-sphere>
+        <a-sphere position="0 0.9 0.46" radius="0.03" color="#111"></a-sphere>
+
+        <!-- BRAZOS -->
+        <a-cylinder position="-0.8 1.3 0" rotation="0 0 40"
+                    height="0.8" radius="0.03" color="#8B5A2B"></a-cylinder>
+        <a-cylinder position="0.8 1.3 0" rotation="0 0 -40"
+                    height="0.8" radius="0.03" color="#8B5A2B"></a-cylinder>
+
+        <!-- GORRO ROSADO -->
+        <a-cone position="0 2.2 0" height="0.5" radius-bottom="0.3" radius-top="0.05"
+                color="#FF69B4"></a-cone>
+        <a-sphere position="0 2.45 0" radius="0.06" color="#FFF0F5"></a-sphere>
+
+        <!-- BUFANDA ROSADA -->
+        <a-torus position="0 1.65 0" radius="0.38" radius-tubular="0.05" color="#FF69B4"></a-torus>
+        <a-box position="0.15 1.45 0.02" width="0.1" height="0.4" depth="0.05" color="#FF69B4"></a-box>
+        <a-box position="-0.15 1.45 0.02" width="0.1" height="0.4" depth="0.05" color="#FF69B4"></a-box>
+      </a-entity>
+
+      <!-- 🎥 CÁMARA CON MOVIMIENTO LIBRE -->
+      <a-entity id="rig" movement-controls="fly: true" position="0 1.6 5">
+        <a-entity camera look-controls></a-entity>
       </a-entity>
     </a-scene>
   </body>
