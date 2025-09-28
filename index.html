@@ -1,152 +1,69 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Muñeco de Nieve - Controles WASD</title>
-
-  <!-- A-Frame (CDN seguro) -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muñeco de Nieve Adorable</title>
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-
   <style>
-    body { margin: 0; font-family: sans-serif; }
-    /* Botón grande para activar controles (overlay) */
-    #enableBtn {
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg,#ff8fc9,#ff69b4);
-      color: white;
-      border: none;
-      padding: 18px 28px;
-      font-size: 20px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      cursor: pointer;
-      z-index: 9999;
-    }
-    #hint {
-      position: fixed;
-      left: 50%;
-      top: calc(50% + 70px);
-      transform: translateX(-50%);
-      color: #222;
-      font-size: 13px;
-      z-index: 9999;
-      text-align: center;
-    }
+    body { margin: 0; }
   </style>
 </head>
 <body>
-  <!-- Botón para dar foco y solicitar pointer lock -->
-  <button id="enableBtn">Habilitar controles (W/A/S/D + Mouse)</button>
-  <div id="hint">Haz clic en el botón y luego usa W/A/S/D para moverte. Presiona Esc para salir del pointer lock.</div>
+<a-scene renderer="antialias: true; colorManagement: true" shadow="type: pcfsoft">
 
-  <a-scene background="color: #BDE7FB">
-    <!-- Iluminación -->
-    <a-entity light="type: ambient; intensity: 0.7; color: #ffffff"></a-entity>
-    <a-entity light="type: directional; intensity: 1" position="2 4 3"></a-entity>
+  <!-- LUCES -->
+  <a-entity light="type: hemisphere; intensity: 0.7; groundColor: #a3b1c2; color: #ffffff"></a-entity>
+  <a-entity light="type: directional; intensity: 1" position="2 5 3"></a-entity>
 
-    <!-- Suelo y cielo -->
-    <a-plane rotation="-90 0 0" width="60" height="60" color="#F6FBFF" position="0 0 -6"></a-plane>
-    <a-sky color="#BDE7FB"></a-sky>
+  <!-- SUELO y CIELO -->
+  <a-plane rotation="-90 0 0" width="40" height="40" color="#F0F8FF"></a-plane>
+  <a-sky color="#BDE7FB"></a-sky>
 
-    <!-- Muñeco solo con primitivas (adorable) -->
-    <a-entity id="snowman" position="0 0 -4" rotation="0 0 0">
-      <!-- Base grande -->
-      <a-sphere position="0 0.55 0" radius="0.7" color="#ffffff" segments-width="18" segments-height="18"></a-sphere>
-      <!-- Panza -->
-      <a-sphere position="0 1.25 0" radius="0.5" color="#ffffff" segments-width="18" segments-height="18"></a-sphere>
-      <!-- Cabeza -->
-      <a-sphere position="0 1.8 0" radius="0.34" color="#ffffff" segments-width="18" segments-height="18"></a-sphere>
+  <!-- MUÑECO -->
+  <a-entity id="snowman" position="0 0 -5">
+    <!-- Base -->
+    <a-sphere position="0 0.6 0" radius="0.7" color="#ffffff"></a-sphere>
+    <!-- Panza -->
+    <a-sphere position="0 1.3 0" radius="0.5" color="#ffffff"></a-sphere>
+    <!-- Cabeza -->
+    <a-sphere position="0 1.9 0" radius="0.34" color="#ffffff"></a-sphere>
 
-      <!-- Ojos grandes y tiernos -->
-      <a-sphere position="-0.09 1.92 0.32" radius="0.045" color="#0a0a0a"></a-sphere>
-      <a-sphere position="0.09 1.92 0.32" radius="0.045" color="#0a0a0a"></a-sphere>
-      <!-- Lucecita en los ojos (pequeño brillo) -->
-      <a-sphere position="-0.075 1.935 0.345" radius="0.012" color="#ffffff"></a-sphere>
-      <a-sphere position="0.105 1.935 0.345" radius="0.012" color="#ffffff"></a-sphere>
+    <!-- Ojos -->
+    <a-sphere position="-0.09 2.0 0.33" radius="0.045" color="#000"></a-sphere>
+    <a-sphere position="0.09 2.0 0.33" radius="0.045" color="#000"></a-sphere>
 
-      <!-- Nariz de zanahoria -->
-      <a-cone position="0 1.88 0.42" rotation="90 0 0" height="0.18" radius-bottom="0.05" radius-top="0.01" color="#ff8c42"></a-cone>
+    <!-- Nariz -->
+    <a-cone position="0 1.9 0.42" rotation="90 0 0" height="0.18" radius-bottom="0.05" radius-top="0.01" color="#FF8C42"></a-cone>
 
-      <!-- Sonrisa con pequeñas piedras -->
-      <a-sphere position="-0.11 1.78 0.33" radius="0.018" color="#444"></a-sphere>
-      <a-sphere position="-0.05 1.76 0.345" radius="0.018" color="#444"></a-sphere>
-      <a-sphere position="0.05 1.76 0.345" radius="0.018" color="#444"></a-sphere>
-      <a-sphere position="0.11 1.78 0.33" radius="0.018" color="#444"></a-sphere>
+    <!-- Sonrisa -->
+    <a-sphere position="-0.11 1.8 0.33" radius="0.02" color="#444"></a-sphere>
+    <a-sphere position="-0.05 1.77 0.34" radius="0.02" color="#444"></a-sphere>
+    <a-sphere position="0.05 1.77 0.34" radius="0.02" color="#444"></a-sphere>
+    <a-sphere position="0.11 1.8 0.33" radius="0.02" color="#444"></a-sphere>
 
-      <!-- Botones -->
-      <a-sphere position="0 1.35 0.36" radius="0.03" color="#222"></a-sphere>
-      <a-sphere position="0 1.05 0.38" radius="0.03" color="#222"></a-sphere>
-      <a-sphere position="0 0.75 0.4" radius="0.03" color="#222"></a-sphere>
+    <!-- Botones -->
+    <a-sphere position="0 1.35 0.36" radius="0.03" color="#222"></a-sphere>
+    <a-sphere position="0 1.05 0.38" radius="0.03" color="#222"></a-sphere>
+    <a-sphere position="0 0.75 0.40" radius="0.03" color="#222"></a-sphere>
 
-      <!-- Brazos (palitos más finos y curvados un poco) -->
-      <a-cylinder position="-0.85 1.25 -0.03" rotation="0 0 36" height="0.85" radius="0.03" color="#8B5A2B"></a-cylinder>
-      <a-cylinder position="0.85 1.25 -0.03" rotation="0 0 -36" height="0.85" radius="0.03" color="#8B5A2B"></a-cylinder>
+    <!-- Brazos -->
+    <a-cylinder position="-0.85 1.3 0" rotation="0 0 36" height="0.85" radius="0.03" color="#8B5A2B"></a-cylinder>
+    <a-cylinder position="0.85 1.3 0" rotation="0 0 -36" height="0.85" radius="0.03" color="#8B5A2B"></a-cylinder>
 
-      <!-- Bufanda rosada con colgantes -->
-      <a-torus position="0 1.62 0.02" radius="0.38" radius-tubular="0.05" color="#ff69b4"></a-torus>
-      <a-box position="0.16 1.42 0.05" width="0.11" height="0.36" depth="0.05" color="#ff69b4" rotation="8 0 0"></a-box>
+    <!-- Bufanda -->
+    <a-torus position="0 1.62 0.02" radius="0.38" radius-tubular="0.05" color="#FF69B4"></a-torus>
+    <a-box position="0.16 1.42 0.05" width="0.11" height="0.36" depth="0.05" color="#FF69B4" rotation="8 0 0"></a-box>
 
-      <!-- Gorro rosado tipo tejido (base y cuerpo) -->
-      <a-box position="0 2.23 0.01" width="0.72" height="0.06" depth="0.72" color="#ff69b4"></a-box>
-      <a-cylinder position="0 2.45 0" height="0.36" radius="0.27" color="#ff69b4"></a-cylinder>
-      <a-sphere position="0 2.68 0" radius="0.07" color="#fff5f8"></a-sphere>
-    </a-entity>
+    <!-- Gorro -->
+    <a-box position="0 2.23 0.01" width="0.72" height="0.06" depth="0.72" color="#FF69B4"></a-box>
+    <a-cylinder position="0 2.45 0" height="0.36" radius="0.27" color="#FF69B4"></a-cylinder>
+    <a-sphere position="0 2.68 0" radius="0.07" color="#FFF5F8"></a-sphere>
+  </a-entity>
 
-    <!-- Cámara con WASD y look-controls (pointerLockEnabled para mejor experiencia) -->
-    <a-entity id="rig" position="0 1.6 5">
-      <a-entity
-         camera
-         wasd-controls="acceleration: 30"
-         look-controls="pointerLockEnabled: true">
-      </a-entity>
-    </a-entity>
+  <!-- CÁMARA CON WASD -->
+  <a-entity camera look-controls wasd-controls position="0 1.6 4"></a-entity>
 
-  </a-scene>
-
-  <script>
-    // Botón: solicita pointer lock y pone foco en el canvas para que WASD funcione.
-    const btn = document.getElementById('enableBtn');
-    const hint = document.getElementById('hint');
-    btn.addEventListener('click', () => {
-      const sceneEl = document.querySelector('a-scene');
-
-      function tryLock() {
-        const canvas = sceneEl.canvas;
-        if (canvas) {
-          // Request pointer lock (algunos navegadores requieren user gesture)
-          const request = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
-          if (request) request.call(canvas);
-          // Focus para que el teclado llegue al canvas
-          canvas.setAttribute('tabindex', '-1'); // hacer focusable
-          canvas.focus();
-          btn.style.display = 'none';
-          hint.style.display = 'none';
-        } else {
-          // Si el canvas aún no está listo, esperar al evento
-          sceneEl.addEventListener('render-target-loaded', tryLock, { once: true });
-        }
-      }
-      tryLock();
-    });
-
-    // DEBUG: si quieres ver si el teclado se detecta (ver en consola del navegador)
-    window.addEventListener('keydown', (e) => {
-      // console.log('keydown', e.code); // descomenta para debug
-    });
-
-    // Manejo visual si el usuario sale del pointer lock (opcional)
-    document.addEventListener('pointerlockchange', () => {
-      const locked = document.pointerLockElement !== null;
-      if (!locked) {
-        // Mostrar el botón otra vez para reactivar controles
-        document.getElementById('enableBtn').style.display = 'block';
-        document.getElementById('hint').style.display = 'block';
-      }
-    });
-  </script>
+</a-scene>
 </body>
 </html>
